@@ -1,13 +1,15 @@
 import turtle
 import pandas
+import os
+os.chdir("C:\\Python-Workspace\\Python 100 Days\\Day 25\\USA_states_game")
 
 screen = turtle.Screen()
 screen.title("U.S. States Game")
-image = "C:\\Python-Workspace\\Python 100 Days\\Day 25\\USA_states_game\\blank_states_img.gif"
+image = "blank_states_img.gif"
 screen.addshape(image)
 turtle.shape(image)
 
-data = pandas.read_csv("C:\\Python-Workspace\\Python 100 Days\\Day 25\\USA_states_game\\50_states.csv")
+data = pandas.read_csv("50_states.csv")
 all_states = data.state.to_list()
 guessed_states = []
 
@@ -17,7 +19,7 @@ while len(guessed_states) < 50:
     if answer_state == "Exit":
         missing_states = [state for state in all_states if state not in guessed_states]
         new_data = pandas.DataFrame(missing_states)
-        new_data.to_csv("C:\\Python-Workspace\\Python 100 Days\\Day 25\\USA_states_game\\states_to_learn.csv")
+        new_data.to_csv("states_to_learn.csv")
         break
     if answer_state in all_states:
         guessed_states.append(answer_state)
